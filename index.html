@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Untuk Kamu ❤️</title>
+  <meta name="description" content="Kolase foto kenangan dan satu video spesial untukmu.">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg: #fff7f9;
+      --card: #ffffff;
+      --text: #333;
+      --accent: #ff7aa5;
+      --muted: #f3dfe7;
+      --radius: 16px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height:1.6;
+    }
+    h1,h2,h3{
+      font-family: 'Dancing Script', cursive;
+      color: var(--accent);
+    }
+    .wrap{ max-width: 980px; margin: 32px auto; padding: 20px; }
+    header{ text-align:center; margin-bottom: 18px; }
+    h1{ font-size: 38px; margin: 0 0 6px; }
+    .sub{ color:#555; font-size: 15px; }
+
+    .card{ background: var(--card); border:1px solid var(--muted); border-radius: var(--radius); box-shadow: 0 6px 20px rgba(0,0,0,.05); padding: 18px; }
+
+    .grid{
+      display:grid; gap: 10px;
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .grid figure{ 
+      margin:0; 
+      overflow:hidden; 
+      border-radius: 12px; 
+      border:1px solid var(--muted); 
+      background:#fafafa; 
+      aspect-ratio: 1/1; 
+      position:relative;
+    }
+    .grid img{ 
+      width:100%; 
+      height:100%; 
+      object-fit:cover; 
+      transition: transform .25s ease; 
+      border-radius: 12px;
+      cursor:pointer;
+      position:relative;
+      z-index:1;
+    }
+    .grid figure:hover img{ transform: scale(1.05); }
+
+    /* bingkai capybara grid */
+    .grid figure::before {
+      content:""; 
+      position:absolute; 
+      inset:-6px;   
+      border-radius:16px;
+      background: url('assets/capybara-frame.png') center/contain no-repeat;
+      pointer-events:none;
+      z-index:2;
+    }
+
+    @media (min-width: 920px){
+      .grid figure.wide{ grid-column: span 2; aspect-ratio: 2/1; }
+      .grid{ grid-template-columns: repeat(4, 1fr); }
+    }
+
+    .video-wrap{ margin-top: 18px; }
+    .video-card{ 
+      background: var(--card); 
+      border:1px solid var(--muted); 
+      border-radius: var(--radius); 
+      padding: 12px; 
+      box-shadow: 0 0 30px rgba(255, 122, 165, 0.5);
+    }
+    video{ width:100%; border-radius: 12px; display:block; }
+
+    footer{ text-align:center; color:#666; font-size: 13px; margin-top: 22px; }
+    .backlink{ display:inline-block; margin-top: 8px; padding:10px 16px; border-radius: 999px;
+      background: var(--accent); color:#fff; text-decoration:none; }
+
+    /* Lightbox */
+    .lightbox {
+      display:none; 
+      position:fixed; 
+      inset:0; 
+      background: rgba(0,0,0,.7); 
+      justify-content:center; 
+      align-items:center; 
+      z-index:1000;
+    }
+    .lightbox .frame {
+      position: relative;
+      max-width:80%; 
+      max-height:80%;
+    }
+    .lightbox img {
+      width:100%; 
+      height:auto; 
+      border-radius:20px; 
+      box-shadow:0 0 30px rgba(0,0,0,.6);
+      position: relative;
+      z-index:1;
+    }
+    .lightbox .frame::before {
+      content:""; 
+      position:absolute; 
+      inset:-12px;   
+      background:url('assets/capybara-frame.png') center/contain no-repeat;
+      pointer-events:none;
+      z-index:2;
+      border-radius:24px;
+    }
+
+    /* Musik kontrol */
+    .music-control {
+      position: fixed; bottom: 15px; right: 15px;
+      background: var(--accent); color:#fff;
+      border:none; border-radius:50%;
+      width:48px; height:48px;
+      display:flex; justify-content:center; align-items:center;
+      cursor:pointer; box-shadow:0 4px 12px rgba(0,0,0,.2);
+      z-index:2000;
+    }
+
+    /* Capybara GIF */
+    .capy {
+      position: fixed !important;  /* paksa biar diem */
+      top: 10px;
+      width: 120px;
+      z-index: 5000; /* paling atas */
+      pointer-events: none; /* biar nggak nutup klik */
+      animation: sway 3s ease-in-out infinite;
+    }
+    .capy.left { left: 10px; transform-origin: bottom right; }
+    .capy.right { right: 10px; transform-origin: bottom left; }
+
+    @keyframes sway {
+      0% { transform: rotate(0deg); }
+      25% { transform: rotate(4deg); }
+      50% { transform: rotate(0deg); }
+      75% { transform: rotate(-4deg); }
+      100% { transform: rotate(0deg); }
+    }
+  </style>
+</head>
+<body>
+  <!-- GIF capybara kiri & kanan -->
+  <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExNW1xZXR3c3NkY3VqbnQ3bmxuMm5zYTA3bjJkYjZmODNyczBjNjJmYSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/PhNsRmRziLvsxSQiNs/giphy.gif" class="capy left" alt="Capybara Left">
+  <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ3JrdGtpd3Z6eWkxeG9qNmhpeG41ZGh2OWRlMXF1eTdiNzJ5bWV3byZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/IXCz7oa9ePzvVWrH97/giphy.gif" class="capy right" alt="Capybara Right">
+
+  <div class="wrap">
+    <header>
+      <h1>Sayang Gomehh</h1>
+      <p class="sub">Cantiknya Akuuu</p>
+    </header>
+
+    <section class="card">
+      <div class="grid">
+        <figure><img src="assets/5.jpg" alt="foto1"></figure>
+        <figure class="wide"><img src="assets/6.jpg" alt="foto2"></figure>
+      </div>
+    </section>
+
+    <section class="video-wrap">
+      <div class="video-card">
+        <video controls>
+          <source src="assets/vid1.mp4" type="video/mp4">
+          Browsermu tidak mendukung video.
+        </video>
+      </div>
+    </section>
+
+    <footer>
+      <p>Dari mas Aldi untuk Sayangku gomehku,imut nyebelin wle</p>
+      
+    </footer>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <div class="frame">
+      <img src="" alt="preview" id="lightbox-img">
+    </div>
+  </div>
+
+  <!-- Musik -->
+  <audio id="bg-music" loop>
+    <source src="assets/song.mp3" type="audio/mpeg">
+  </audio>
+  <button class="music-control" id="music-btn">▶</button>
+
+  <script>
+    // Musik
+    const music = document.getElementById('bg-music');
+    const musicBtn = document.getElementById('music-btn');
+    let isPlaying = false;
+
+    musicBtn.addEventListener('click', ()=>{
+      if(isPlaying){
+        music.pause();
+        musicBtn.textContent = "▶";
+      } else {
+        music.play();
+        musicBtn.textContent = "⏸";
+      }
+      isPlaying = !isPlaying;
+    });
+
+    // Autoplay setelah interaksi pertama
+    document.body.addEventListener('click', function(){
+      if(!isPlaying){
+        music.play();
+        musicBtn.textContent = "⏸";
+        isPlaying = true;
+      }
+    }, {once:true});
+
+    // Lightbox
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    document.querySelectorAll('.grid img').forEach(img=>{
+      img.addEventListener('click', ()=>{
+        lightboxImg.src = img.src;
+        lightbox.style.display = 'flex';
+      });
+    });
+    lightbox.addEventListener('click', ()=>{ lightbox.style.display='none'; });
+  </script>
+</body>
+</html>
